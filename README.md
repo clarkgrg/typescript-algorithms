@@ -2,12 +2,14 @@
 
 This repository contains Typescript based examples of many popular algorithms and data structures.
 
+I created this repository as a organized practice area.
+
 This repository is based on the work of others, please visit the source for more complete descriptions and explanations:
 
 https://github.com/basarat/algorithms  
 https://github.com/trekhleb/javascript-algorithms  
 https://github.com/tajpouria/algorithms-and-data-structures-cheat-sheet
-https://github.com/AvraamMavridis/Algorithms-Data-Structures-in-Typescript
+https://github.com/AvraamMavridis/Algorithms-Data-Structures-in-Typescript  
 https://www.techiedelight.com/
 
 ## Data Structures
@@ -22,8 +24,8 @@ An algorithm is an unambiguous specification of how to solve a class of problems
 a set of rules that precisely define a sequence of operations.
 
 - [FizzBuzz](/src/fizzbuzz/)
-- [anagram](/src/anagram/)
-- [palindrome](/src/palindrome/)
-- [simple sort](/src/simple-sort/)
+- [Anagram](/src/anagram/)
+- [Palindrome](/src/palindrome/)
+- [Simple sort](/src/simple-sort/)
 - [bubbleSort](/src/bubbleSort/)
 - [quickSort](/src/quickSort/)
