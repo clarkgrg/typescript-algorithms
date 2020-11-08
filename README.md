@@ -1,4 +1,4 @@
-# Typescript Algorithms
+# Typescript Algorithms and Data Structures
 
 This repository contains Typescript based examples of many popular algorithms and data structures.
 
@@ -9,3 +9,14 @@ https://github.com/trekhleb/javascript-algorithms
 https://github.com/tajpouria/algorithms-and-data-structures-cheat-sheet
 https://github.com/AvraamMavridis/Algorithms-Data-Structures-in-Typescript
 https://www.techiedelight.com/
+
+## Data Structures
+
+A data structure is a particular way of organizing and storing data in a computer so that it can be accessed and modified efficiently
+
+- [Heap](/src/heap/)
+
+## Algorithms
+
+An algorithm is an unambiguous specification of how to solve a class of problems. It is
+a set of rules that precisely define a sequence of operations.
