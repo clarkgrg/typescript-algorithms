@@ -63,3 +63,7 @@ Add package.json
 
 - This allows you to run the tests with a simple npm t.
 - And even in watch mode with npm t -- --watch.
+
+### Sites to Review
+
+https://www.youtube.com/playlist?list=PLLXdhg_r2hKA7DPDsunoDZ-Z769jWn4R8

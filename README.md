@@ -29,3 +29,6 @@ a set of rules that precisely define a sequence of operations.
 - [Simple sort](/src/simple-sort/)
 - [bubbleSort](/src/bubbleSort/)
 - [quickSort](/src/quickSort/)
+- [insertionSort](/src/insertionSort)
+- [mergeSort](/src/mergeSort)
+- [binarySearch](/src/binarySearch)
