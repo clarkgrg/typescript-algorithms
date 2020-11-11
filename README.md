@@ -1,6 +1,7 @@
 # Typescript Algorithms and Data Structures
 
-This repository contains Typescript based examples of many popular algorithms and data structures.
+This repository contains Typescript based examples of many popular algorithms, data structures,
+and design patterns.
 
 I created this repository as a organized practice area.
 
@@ -11,6 +12,8 @@ https://github.com/trekhleb/javascript-algorithms
 https://github.com/tajpouria/algorithms-and-data-structures-cheat-sheet
 https://github.com/AvraamMavridis/Algorithms-Data-Structures-in-Typescript  
 https://www.techiedelight.com/
+
+https://ruslanspivak.com/lsbasi-part1/
 
 ## Data Structures
 
@@ -33,8 +36,16 @@ a set of rules that precisely define a sequence of operations.
 - [mergeSort](/src/mergeSort)
 - [binarySearch](/src/binarySearch)
 
+## Design Patterns
+
 ## Typescript snippets
 
 Interesting problems and functionality in Typescript/Javascript
 
 - [async forEach](/src/typebits)
+
+## Interpreter
+
+Can we build a Typescript version of the python interpreter built by the excellent blog posts from Ruslan Spivak.
+
+- [Interpreter Part 1](/src/interpreter)
