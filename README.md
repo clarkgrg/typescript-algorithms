@@ -32,3 +32,9 @@ a set of rules that precisely define a sequence of operations.
 - [insertionSort](/src/insertionSort)
 - [mergeSort](/src/mergeSort)
 - [binarySearch](/src/binarySearch)
+
+## Typescript snippets
+
+Interesting problems and functionality in Typescript/Javascript
+
+- [async forEach](/src/typebits)
