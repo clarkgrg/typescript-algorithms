@@ -48,4 +48,5 @@ Interesting problems and functionality in Typescript/Javascript
 
 Can we build a Typescript version of the python interpreter built by the excellent blog posts from Ruslan Spivak.
 
-- [Interpreter Part 1](/src/interpreter)
+- [Interpreter Part 1 - Simple Calculator](/src/interpreter)
+- [Interpreter Part 2 - Enhanced Calculator](/src/interpreter)

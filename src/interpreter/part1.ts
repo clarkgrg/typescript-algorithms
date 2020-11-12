@@ -1,4 +1,6 @@
-const readline = require('readline');
+
+namespace Part1 {
+  const readline = require('readline');
 
 enum eTokens {
   INTEGER = 'INTEGER',
@@ -126,7 +128,7 @@ class Intepreter {
   }
 }
 
-async function main() {
+export async function main() {
   console.log('Enter your equation in the form of a+b - Ctrl-C to exit');
   const rl = readline.createInterface(process.stdin);
 
@@ -144,5 +146,6 @@ async function main() {
     }
   }
 }
+} 
 
-main();
+Part1.main();
