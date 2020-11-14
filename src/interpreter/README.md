@@ -49,3 +49,9 @@ Part4 (part4.ts) parses and interprets arithmetic expressions with any number of
 - lexical analysis (Lexer) and interpreter are separate classes
 
 [Let's Build a Simple Interpreter. Part 4](https://ruslanspivak.com/lsbasi-part4/)
+
+Part5 (part5.ts) parses and interprets arithmetic expressions with any number of *, /, +, - *operators.
+
+- Added precedence to the operations
+
+[Let's Build a Simple Interpreter. Part 5](https://ruslanspivak.com/lsbasi-part5/)
