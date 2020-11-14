@@ -42,7 +42,7 @@ a set of rules that precisely define a sequence of operations.
 
 Interesting problems and functionality in Typescript/Javascript
 
-- [async forEach](/src/typebits)
+- [async forEach, for, and map](/src/typebits)
 
 ## Interpreter
 
@@ -50,3 +50,6 @@ Can we build a Typescript version of the python interpreter built by the excelle
 
 - [Interpreter Part 1 - Simple Calculator](/src/interpreter)
 - [Interpreter Part 2 - Enhanced Calculator](/src/interpreter)
+- [Interpreter Part 3 - Enhanced Calculator any number of +, -](/src/interpreter)
+- [Interpreter Part 4 - Enhanced Calculator with \*, / ](/src/interpreter)
+- [Interpreter Part 5 - Calculator with \*, /, +, - and precedence](/src/interpreter)
