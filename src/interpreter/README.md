@@ -35,3 +35,17 @@ Typescript learnings from part 2:
 
 - namespaces to avoid enum naming conflicts
 - extending object prototypes in Typescript
+
+## Part 3. Improved simple calculator
+
+Part3 (part3.ts) parses and interprets arithmetic expressions with any number of plus or minus operators.
+
+[Let's Build a Simple Interpreter. Part 3](https://ruslanspivak.com/lsbasi-part3/)
+
+## Part 4. Improved simple calculator
+
+Part4 (part4.ts) parses and interprets arithmetic expressions with any number of multiply or divide operators.
+
+- lexical analysis (Lexer) and interpreter are separate classes
+
+[Let's Build a Simple Interpreter. Part 4](https://ruslanspivak.com/lsbasi-part4/)
