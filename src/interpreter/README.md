@@ -42,13 +42,15 @@ Part3 (part3.ts) parses and interprets arithmetic expressions with any number of
 
 [Let's Build a Simple Interpreter. Part 3](https://ruslanspivak.com/lsbasi-part3/)
 
-## Part 4. Improved simple calculator
+## Part 4. Calculator for multiply and divide
 
 Part4 (part4.ts) parses and interprets arithmetic expressions with any number of multiply or divide operators.
 
 - lexical analysis (Lexer) and interpreter are separate classes
 
 [Let's Build a Simple Interpreter. Part 4](https://ruslanspivak.com/lsbasi-part4/)
+
+## Part 5. Calculator with \*, /, +, - and precedence
 
 Part5 (part5.ts) parses and interprets arithmetic expressions with any number of *, /, +, - *operators.
 
