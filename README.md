@@ -53,3 +53,4 @@ Can we build a Typescript version of the python interpreter built by the excelle
 - [Interpreter Part 3 - Enhanced Calculator any number of +, -](/src/interpreter)
 - [Interpreter Part 4 - Enhanced Calculator with \*, / ](/src/interpreter)
 - [Interpreter Part 5 - Calculator with \*, /, +, - and precedence](/src/interpreter)
+- [Interpreter Part 6 - Calculator with (, ), \*, /, +, - and precedence](/src/interpreter)

@@ -58,6 +58,14 @@ namespace Part6 {
     public isDivide(): boolean {
       return this.type === eTokens.DIV;
     }
+
+    public isLParen(): boolean {
+      return this.type === eTokens.LPAREN;
+    }
+
+    public isRParen(): boolean {
+      return this.type === eTokens.RPAREN;
+    }
   }
 
   class Lexer {
@@ -139,6 +147,16 @@ namespace Part6 {
           return new Token(eTokens.DIV, this.current_char);
         }
 
+        if (this.current_char === '(') {
+          this.advance();
+          return new Token(eTokens.LPAREN, this.current_char);
+        }
+
+        if (this.current_char === ')') {
+          this.advance();
+          return new Token(eTokens.RPAREN, this.current_char);
+        }
+
         this.error();
       }
 
@@ -178,12 +196,23 @@ namespace Part6 {
     }
 
     /**
-     * returns an integer token value
+     * returns an integer | LPAREN expr RPAREN
      */
     private factor(): number {
       const token = this.current_token;
-      this.eat(eTokens.INTEGER);
-      return <number>token?.value!;
+      if (token?.isInteger()) {
+        this.eat(eTokens.INTEGER);
+        return <number>token?.value!;
+      } else if (token?.isLParen()) {
+        this.eat(eTokens.LPAREN);
+        const result: number = this.expr();
+        this.eat(eTokens.RPAREN);
+        return result;
+      }
+
+      // Should never get here
+      this.error();
+      return 0;
     }
 
     private term(): number {
@@ -236,7 +265,9 @@ namespace Part6 {
   }
 
   export async function main() {
-    console.log('Enter your equation using *, /, +, or - - Ctrl-C to exit');
+    console.log(
+      'Enter your equation using (, ), *, /, +, or - - Ctrl-C to exit'
+    );
     const rl = readline.createInterface(process.stdin);
 
     for await (const line of rl) {
@@ -248,7 +279,7 @@ namespace Part6 {
       } catch (err) {
         if (err.name === ERROR_NAME) {
           console.log(
-            `${err.message} enter your equation using  using *, /, +, or -`
+            `${err.message} enter your equation using (, ), *, /, +, or -`
           );
         } else {
           console.log(err);

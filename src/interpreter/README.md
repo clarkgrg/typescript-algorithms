@@ -57,3 +57,11 @@ Part5 (part5.ts) parses and interprets arithmetic expressions with any number of
 - Added precedence to the operations
 
 [Let's Build a Simple Interpreter. Part 5](https://ruslanspivak.com/lsbasi-part5/)
+
+## Part 5. Calculator with (, ), \*, /, +, - and precedence
+
+Part6 (part6.ts) parses and interprets parenthesized arithmetic expressions
+
+- Added left and right parenthesis
+
+[Let's Build a Simple Interpreter. Part 6](https://ruslanspivak.com/lsbasi-part6/)
