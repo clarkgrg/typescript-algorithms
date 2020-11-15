@@ -2,7 +2,7 @@ import './string.ext';
 
 namespace Part5 {
   const readline = require('readline');
-  
+
   enum eTokens {
     DIV = 'DIV',
     EOF = 'EOF',
@@ -17,11 +17,11 @@ namespace Part5 {
     private date: Date;
     constructor(...params: any[]) {
       // Pass remaining arguments (including vendor specific ones) to parent constructor
-      super(...params)
+      super(...params);
 
       // Maintains proper stack trace for where our error was thrown (only available on V8)
       if (Error.captureStackTrace) {
-        Error.captureStackTrace(this, ParsingError)
+        Error.captureStackTrace(this, ParsingError);
       }
 
       this.name = ERROR_NAME;
@@ -31,8 +31,7 @@ namespace Part5 {
   }
 
   class Token {
-    constructor(public type: eTokens, public value: number | string | null) {
-    }
+    constructor(public type: eTokens, public value: number | string | null) {}
 
     public isPlus(): boolean {
       return this.type === eTokens.PLUS;
@@ -94,20 +93,20 @@ namespace Part5 {
     private integer(): number {
       //  """Return a (multidigit) integer consumed from the input."""
       let result: string = '';
-      while(this.current_char?.isdigit()) {
+      while (this.current_char?.isdigit()) {
         result += this.current_char[0];
         this.advance();
       }
-      return(parseInt(result));
+      return parseInt(result);
     }
 
     /**
      * lexical analyzer (also known as scanner or tokenizer)
-     * 
+     *
      * This method is responsible for breaking a sentence
      * apart into tokens. One token at a time.
      */
-    public get_next_token() : Token | null {
+    public get_next_token(): Token | null {
       while (this.current_char) {
         if (this.current_char?.isspace()) {
           this.skip_whitespace();
@@ -115,27 +114,27 @@ namespace Part5 {
         }
 
         if (this.current_char.isdigit()) {
-          return new Token(eTokens.INTEGER, this.integer())
+          return new Token(eTokens.INTEGER, this.integer());
         }
 
         if (this.current_char === '+') {
           this.advance();
-          return new Token(eTokens.PLUS, this.current_char)
+          return new Token(eTokens.PLUS, this.current_char);
         }
 
         if (this.current_char === '-') {
           this.advance();
-          return new Token(eTokens.MINUS, this.current_char)
+          return new Token(eTokens.MINUS, this.current_char);
         }
-  
+
         if (this.current_char === '*') {
           this.advance();
-          return new Token(eTokens.MUL, this.current_char)
+          return new Token(eTokens.MUL, this.current_char);
         }
 
         if (this.current_char === '/') {
           this.advance();
-          return new Token(eTokens.DIV, this.current_char)
+          return new Token(eTokens.DIV, this.current_char);
         }
 
         this.error();
@@ -143,7 +142,6 @@ namespace Part5 {
 
       return new Token(eTokens.EOF, null);
     }
-
   }
 
   class Intepreter {
@@ -167,10 +165,10 @@ namespace Part5 {
      * compare the current token type with the passed token thype and if they match
      * then 'eat' the current token and assign the next token to the current_token
      * otherwise raist and excpetion
-     * @param token_type 
+     * @param token_type
      */
     private eat(token_type: eTokens): void {
-      if (this.current_token?.type === token_type ) {
+      if (this.current_token?.type === token_type) {
         this.current_token = this.lexer.get_next_token();
       } else {
         this.error();
@@ -180,7 +178,7 @@ namespace Part5 {
     /**
      * returns an integer token value
      */
-    private factor(): number { 
+    private factor(): number {
       const token = this.current_token;
       this.eat(eTokens.INTEGER);
       return <number>token?.value!;
@@ -190,7 +188,10 @@ namespace Part5 {
       // """term : factor ((MUL | DIV) factor)*"""
       let result = this.factor();
 
-      while (this.current_token?.isMultiply() || this.current_token?.isDivide()) {
+      while (
+        this.current_token?.isMultiply() ||
+        this.current_token?.isDivide()
+      ) {
         let token: Token = this.current_token!;
         if (token.isMultiply()) {
           this.eat(eTokens.MUL);
@@ -237,14 +238,16 @@ namespace Part5 {
     const rl = readline.createInterface(process.stdin);
 
     for await (const line of rl) {
-      const lexer = new Lexer(line)
+      const lexer = new Lexer(line);
       try {
         const interpreter = new Intepreter(lexer);
         const result = interpreter.expr();
         console.log(`result is ${result}`);
       } catch (err) {
         if (err.name === ERROR_NAME) {
-          console.log(`${err.message} enter your equation using  using *, /, +, or -`);
+          console.log(
+            `${err.message} enter your equation using  using *, /, +, or -`
+          );
         } else {
           console.log(err);
         }

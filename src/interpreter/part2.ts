@@ -2,7 +2,7 @@ import './string.ext';
 
 namespace Part2 {
   const readline = require('readline');
-  
+
   enum eTokens {
     EOF = 'EOF',
     INTEGER = 'INTEGER',
@@ -15,11 +15,11 @@ namespace Part2 {
     private date: Date;
     constructor(...params: any[]) {
       // Pass remaining arguments (including vendor specific ones) to parent constructor
-      super(...params)
+      super(...params);
 
       // Maintains proper stack trace for where our error was thrown (only available on V8)
       if (Error.captureStackTrace) {
-        Error.captureStackTrace(this, ParsingError)
+        Error.captureStackTrace(this, ParsingError);
       }
 
       this.name = ERROR_NAME;
@@ -29,8 +29,7 @@ namespace Part2 {
   }
 
   class Token {
-    constructor(public type: eTokens, public value: number | string | null) {
-    }
+    constructor(public type: eTokens, public value: number | string | null) {}
   }
 
   class Intepreter {
@@ -70,20 +69,20 @@ namespace Part2 {
     private integer() {
       //  """Return a (multidigit) integer consumed from the input."""
       let result: string = '';
-      while(this.current_char?.isdigit()) {
+      while (this.current_char?.isdigit()) {
         result += this.current_char[0];
         this.advance();
       }
-      return(parseInt(result));
+      return parseInt(result);
     }
 
     /**
      * lexical analyzer (also known as scanner or tokenizer)
-     * 
+     *
      * This method is responsible for breaking a sentence
      * apart into tokens. One token at a time.
      */
-    private get_next_token() : Token | null {
+    private get_next_token(): Token | null {
       while (this.current_char) {
         if (this.current_char?.isspace()) {
           this.skip_whitespace();
@@ -91,19 +90,19 @@ namespace Part2 {
         }
 
         if (this.current_char.isdigit()) {
-          return new Token(eTokens.INTEGER, this.integer())
+          return new Token(eTokens.INTEGER, this.integer());
         }
 
         if (this.current_char === '+') {
           this.advance();
-          return new Token(eTokens.PLUS, this.current_char)
+          return new Token(eTokens.PLUS, this.current_char);
         }
 
         if (this.current_char === '-') {
           this.advance();
-          return new Token(eTokens.MINUS, this.current_char)
+          return new Token(eTokens.MINUS, this.current_char);
         }
-  
+
         this.error();
       }
 
@@ -111,7 +110,7 @@ namespace Part2 {
     }
 
     private eat(token_type: eTokens): void {
-      if (this.current_token?.type === token_type ) {
+      if (this.current_token?.type === token_type) {
         this.current_token = this.get_next_token();
       } else {
         this.error();
@@ -123,7 +122,7 @@ namespace Part2 {
       // "expr -> INTEGER MINUS INTEGER"
 
       // set current token to the first token taken from the input
-      this.current_token = this.get_next_token()
+      this.current_token = this.get_next_token();
 
       // we expect the current token to be a single-digit integer
       const left = this.current_token;
@@ -151,16 +150,18 @@ namespace Part2 {
 
       let result: number;
       if (op?.type === eTokens.PLUS) {
-        result = <number>left?.value + <number>right?.value; 
+        result = <number>left?.value + <number>right?.value;
       } else {
-        result = <number>left?.value - <number>right?.value; 
+        result = <number>left?.value - <number>right?.value;
       }
-      return result
+      return result;
     }
   }
 
   export async function main() {
-    console.log('Enter your equation in the form of a + b or a - b - Ctrl-C to exit');
+    console.log(
+      'Enter your equation in the form of a + b or a - b - Ctrl-C to exit'
+    );
     const rl = readline.createInterface(process.stdin);
 
     for await (const line of rl) {
@@ -170,7 +171,9 @@ namespace Part2 {
         console.log(`result is ${result}`);
       } catch (err) {
         if (err.name === ERROR_NAME) {
-          console.log('Incorrect input enter your equation in the form a + b or a - b');
+          console.log(
+            'Incorrect input enter your equation in the form a + b or a - b'
+          );
         } else {
           console.log(err);
         }

@@ -2,7 +2,7 @@ import './string.ext';
 
 namespace Part3 {
   const readline = require('readline');
-  
+
   enum eTokens {
     EOF = 'EOF',
     INTEGER = 'INTEGER',
@@ -15,11 +15,11 @@ namespace Part3 {
     private date: Date;
     constructor(...params: any[]) {
       // Pass remaining arguments (including vendor specific ones) to parent constructor
-      super(...params)
+      super(...params);
 
       // Maintains proper stack trace for where our error was thrown (only available on V8)
       if (Error.captureStackTrace) {
-        Error.captureStackTrace(this, ParsingError)
+        Error.captureStackTrace(this, ParsingError);
       }
 
       this.name = ERROR_NAME;
@@ -29,8 +29,7 @@ namespace Part3 {
   }
 
   class Token {
-    constructor(public type: eTokens, public value: number | string | null) {
-    }
+    constructor(public type: eTokens, public value: number | string | null) {}
 
     public isPlus() {
       return this.type === eTokens.PLUS;
@@ -47,7 +46,6 @@ namespace Part3 {
     public isInteger() {
       return this.type === eTokens.INTEGER;
     }
-
   }
 
   class Intepreter {
@@ -87,20 +85,20 @@ namespace Part3 {
     private integer(): number {
       //  """Return a (multidigit) integer consumed from the input."""
       let result: string = '';
-      while(this.current_char?.isdigit()) {
+      while (this.current_char?.isdigit()) {
         result += this.current_char[0];
         this.advance();
       }
-      return(parseInt(result));
+      return parseInt(result);
     }
 
     /**
      * lexical analyzer (also known as scanner or tokenizer)
-     * 
+     *
      * This method is responsible for breaking a sentence
      * apart into tokens. One token at a time.
      */
-    private get_next_token() : Token | null {
+    private get_next_token(): Token | null {
       while (this.current_char) {
         if (this.current_char?.isspace()) {
           this.skip_whitespace();
@@ -108,19 +106,19 @@ namespace Part3 {
         }
 
         if (this.current_char.isdigit()) {
-          return new Token(eTokens.INTEGER, this.integer())
+          return new Token(eTokens.INTEGER, this.integer());
         }
 
         if (this.current_char === '+') {
           this.advance();
-          return new Token(eTokens.PLUS, this.current_char)
+          return new Token(eTokens.PLUS, this.current_char);
         }
 
         if (this.current_char === '-') {
           this.advance();
-          return new Token(eTokens.MINUS, this.current_char)
+          return new Token(eTokens.MINUS, this.current_char);
         }
-  
+
         this.error();
       }
 
@@ -135,10 +133,10 @@ namespace Part3 {
      * compare the current token type with the passed token thype and if they match
      * then 'eat' the current token and assign the next token to the current_token
      * otherwise raist and excpetion
-     * @param token_type 
+     * @param token_type
      */
     private eat(token_type: eTokens): void {
-      if (this.current_token?.type === token_type ) {
+      if (this.current_token?.type === token_type) {
         this.current_token = this.get_next_token();
       } else {
         this.error();
@@ -148,7 +146,7 @@ namespace Part3 {
     /**
      * returns an integer token value
      */
-    private term(): number { 
+    private term(): number {
       const token = this.current_token;
       this.eat(eTokens.INTEGER);
       return <number>token?.value!;
@@ -159,7 +157,7 @@ namespace Part3 {
      */
     public expr() {
       // set current token to the first token taken from the input
-      this.current_token = this.get_next_token()
+      this.current_token = this.get_next_token();
 
       let result: number = this.term();
       while (this.current_token?.isPlus() || this.current_token?.isMinus()) {
@@ -178,7 +176,9 @@ namespace Part3 {
   }
 
   export async function main() {
-    console.log('Enter your equation in the form of a + b or a - b - Ctrl-C to exit');
+    console.log(
+      'Enter your equation in the form of a + b or a - b - Ctrl-C to exit'
+    );
     const rl = readline.createInterface(process.stdin);
 
     for await (const line of rl) {
@@ -188,7 +188,9 @@ namespace Part3 {
         console.log(`result is ${result}`);
       } catch (err) {
         if (err.name === ERROR_NAME) {
-          console.log('Incorrect input enter your equation in the form a + b or a - b');
+          console.log(
+            'Incorrect input enter your equation in the form a + b or a - b'
+          );
         } else {
           console.log(err);
         }

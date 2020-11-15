@@ -1,15 +1,17 @@
 import './string.ext';
 
-namespace Part4 {
+namespace Part6 {
   const readline = require('readline');
 
   enum eTokens {
     DIV = 'DIV',
     EOF = 'EOF',
     INTEGER = 'INTEGER',
+    LPAREN = '(',
     MINUS = 'MINUS',
     MUL = 'MUL',
     PLUS = 'PLUS',
+    RPAREN = ')',
   }
 
   const ERROR_NAME = 'ParsingError';
@@ -117,6 +119,16 @@ namespace Part4 {
           return new Token(eTokens.INTEGER, this.integer());
         }
 
+        if (this.current_char === '+') {
+          this.advance();
+          return new Token(eTokens.PLUS, this.current_char);
+        }
+
+        if (this.current_char === '-') {
+          this.advance();
+          return new Token(eTokens.MINUS, this.current_char);
+        }
+
         if (this.current_char === '*') {
           this.advance();
           return new Token(eTokens.MUL, this.current_char);
@@ -174,11 +186,9 @@ namespace Part4 {
       return <number>token?.value!;
     }
 
-    /**
-     * arithmetic expression parser/interpreter
-     */
-    public expr() {
-      let result: number = this.factor();
+    private term(): number {
+      // """term : factor ((MUL | DIV) factor)*"""
+      let result = this.factor();
 
       while (
         this.current_token?.isMultiply() ||
@@ -196,24 +206,49 @@ namespace Part4 {
 
       return result;
     }
+
+    /**
+     * arithmetic expression parser/interpreter
+     *
+     *   calc>  14 + 2 * 3 - 6 / 2
+     *   17
+     *
+     *   expr   : term ((PLUS | MINUS) term)*
+     *   term   : factor ((MUL | DIV) factor)*
+     *   factor : INTEGER
+     */
+    public expr() {
+      let result: number = this.term();
+
+      while (this.current_token?.isPlus() || this.current_token?.isMinus()) {
+        let token: Token = this.current_token!;
+        if (token.isPlus()) {
+          this.eat(eTokens.PLUS);
+          result = result + this.term();
+        } else if (token.isMinus()) {
+          this.eat(eTokens.MINUS);
+          result = result - this.term();
+        }
+      }
+
+      return result;
+    }
   }
 
   export async function main() {
-    console.log(
-      'Enter your equation in the form of a * b or a / b - Ctrl-C to exit'
-    );
+    console.log('Enter your equation using *, /, +, or - - Ctrl-C to exit');
     const rl = readline.createInterface(process.stdin);
 
     for await (const line of rl) {
       const lexer = new Lexer(line);
-      const interpreter = new Intepreter(lexer);
       try {
+        const interpreter = new Intepreter(lexer);
         const result = interpreter.expr();
         console.log(`result is ${result}`);
       } catch (err) {
         if (err.name === ERROR_NAME) {
           console.log(
-            'Incorrect input enter your equation in the form a * b or a / b'
+            `${err.message} enter your equation using  using *, /, +, or -`
           );
         } else {
           console.log(err);
@@ -223,4 +258,4 @@ namespace Part4 {
   }
 }
 
-Part4.main();
+Part6.main();
