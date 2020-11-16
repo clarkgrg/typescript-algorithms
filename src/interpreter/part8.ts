@@ -1,6 +1,6 @@
 import './string.ext';
 
-namespace Part7 {
+namespace Part8 {
   const readline = require('readline');
 
   /***********************************************************************
@@ -184,6 +184,7 @@ namespace Part7 {
     /**
      * Add some abstract classes to provide visiblity to our tree
      */
+    public abstract getShortName(): string;
     public abstract showType(): void;
   }
 
@@ -203,17 +204,17 @@ namespace Part7 {
       this.right = right;
     }
 
+    public getShortName() {
+      return 'BinOp';
+    }
     /**
      * showType() - Prints out the AST tree
      */
     public showType(): void {
-      const left =
-        this.left.getName() === 'BinOp' ? 'BinOp' : (<Num>this.left).value;
-      const right =
-        this.left.getName() === 'BinOp' ? 'BinOp' : (<Num>this.right).value;
-
       console.log(
-        `BinOp: { left: ${left}, op: ${this.op.type}, right: ${right}}`
+        `BinOp: { left: ${this.left.getShortName()}, op: ${
+          this.op.type
+        }, right: ${this.right.getShortName()}}`
       );
 
       this.left.showType();
@@ -221,6 +222,9 @@ namespace Part7 {
     }
   }
 
+  /**
+   * Num
+   */
   class Num extends AST {
     private token: Token;
     public value: number | string | null;
@@ -230,8 +234,37 @@ namespace Part7 {
       this.value = token.value; // can't we get this from token?
     }
 
+    public getShortName(): string {
+      return this.value?.toString()!;
+    }
     public showType(): void {
       console.log(`Num: { value: ${this.value}}`);
+    }
+  }
+
+  /**
+   * UnaryOp
+   */
+  class UnaryOp extends AST {
+    public op: Token;
+    public expr: AST;
+
+    constructor(op: Token, expr: AST) {
+      super();
+      this.op = op;
+      this.expr = expr;
+    }
+
+    public getShortName(): string {
+      return `Unary ${this.op.type}`;
+    }
+
+    public showType(): void {
+      console.log(
+        `Unary: { value: ${this.op.type}, expr: ${this.expr.getShortName()}}`
+      );
+
+      this.expr.showType();
     }
   }
 
@@ -263,11 +296,17 @@ namespace Part7 {
     }
 
     /**
-     * returns an integer | LPAREN expr RPAREN
+     * factor : (PLUS | MINUS) factor | INTEGER | LPAREN expr RPAREN
      */
     private factor(): AST {
       const token = this.current_token;
-      if (token?.isInteger()) {
+      if (token?.isPlus()) {
+        this.eat(eTokens.PLUS);
+        return new UnaryOp(token, this.factor());
+      } else if (token?.isMinus()) {
+        this.eat(eTokens.MINUS);
+        return new UnaryOp(token, this.factor());
+      } else if (token?.isInteger()) {
         this.eat(eTokens.INTEGER);
         return new Num(token);
       } else if (token?.isLParen()) {
@@ -346,17 +385,20 @@ namespace Part7 {
         return this.visit_BinOp(node);
       } else if (node.getName() === 'Num') {
         return this.visit_Num(node);
+      } else if (node.getName() === 'UnaryOp') {
+        return this.visit_UnaryOp(node);
       }
 
       this.error();
     }
 
-    private error(): void {
-      throw new ParsingError('No visit_ method()');
+    protected error(): void {
+      throw new ParsingError('No visit_ method() or invalid parsing');
     }
 
-    protected abstract visit_BinOp(node: AST): any;
+    protected abstract visit_BinOp(node: AST): number | undefined;
     protected abstract visit_Num(node: AST): string | number | null;
+    protected abstract visit_UnaryOp(node: AST): number | undefined;
   }
 
   class Intepreter extends NodeVisitor {
@@ -366,7 +408,7 @@ namespace Part7 {
       this.parser = parser;
     }
 
-    protected visit_BinOp(node: BinOp): any {
+    protected visit_BinOp(node: BinOp): number | undefined {
       if (node.op.isPlus()) {
         return this.visit(node.left) + this.visit(node.right);
       } else if (node.op.isMinus()) {
@@ -376,17 +418,29 @@ namespace Part7 {
       } else if (node.op.isDivide()) {
         return this.visit(node.left) / this.visit(node.right);
       }
+
+      // Should never get here
+      this.error();
     }
 
     protected visit_Num(node: Num): string | number | null {
       return node.value;
     }
 
+    protected visit_UnaryOp(node: UnaryOp): number | undefined {
+      if (node.op.isPlus()) {
+        return +this.visit(node.expr);
+      } else if (node.op.isMinus()) {
+        return -this.visit(node.expr);
+      }
+
+      // Should never get here
+      this.error();
+    }
+
     public interpret() {
       let tree = this.parser.parse();
-
-      // Uncomment to view AST Tree nodes
-      //tree.showType();
+      tree.showType();
       return this.visit(tree);
     }
   }
@@ -417,4 +471,4 @@ namespace Part7 {
   }
 }
 
-Part7.main();
+Part8.main();

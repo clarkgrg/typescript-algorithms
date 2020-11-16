@@ -73,3 +73,9 @@ Part7 (part7.ts) Uses Abstract Syntax Tree to parse and interpret parenthesized 
 - Added Abstract Syntax Tree
 
 [Let's Build a Simple Interpreter. Part 7](https://ruslanspivak.com/lsbasi-part7/)
+
+## Part 8. Unary plus and minus
+
+Part8 (part8.ts) Adds unary plus and minus
+
+[Let's Build a Simple Interpreter. Part 8](https://ruslanspivak.com/lsbasi-part8/)
