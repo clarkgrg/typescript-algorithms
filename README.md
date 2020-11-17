@@ -19,6 +19,8 @@ https://ruslanspivak.com/lsbasi-part1/
 
 A data structure is a particular way of organizing and storing data in a computer so that it can be accessed and modified efficiently
 
+- [Stack](/src/stack/)
+- [Queue](/src/queue/)
 - [Heap](/src/heap/)
 
 ## Algorithms

@@ -1,6 +1,13 @@
 # Interpreter
 
-Ruslan Spivak created an excellent series of blog posts showing how to build an interpreter. His blog posts used the python language. To help develop my Typescript skills I am recreating his code in Typescript. His explanations of the process is excellent and well worth reading. I will let the user refer to his blog posts for explaining the Interpreter.
+Ruslan Spivak created an excellent series of blog posts showing how to build an interpreter. His blog posts used the python language. To help develop my Typescript skills I am recreating his code in Typescript. I attempt to keep the flow of my Typescript code similar to his Python code so its easy to read from one to the other.
+Ruslan Spivak's explanations of the process is excellent and well worth reading. I will let the user refer to his blog posts for explaining the Interpreter.
+
+[Let's Build a Simple Interpreter. Part 1](https://ruslanspivak.com/lsbasi-part1/)
+
+Other Typescript versions I found on github
+
+[Another Typescript Version](https://github.com/shiftonetothree/interpreter)
 
 ## Part 1. Build a simple calculator
 
