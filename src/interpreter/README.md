@@ -86,3 +86,18 @@ Part7 (part7.ts) Uses Abstract Syntax Tree to parse and interpret parenthesized 
 Part8 (part8.ts) Adds unary plus and minus
 
 [Let's Build a Simple Interpreter. Part 8](https://ruslanspivak.com/lsbasi-part8/)
+
+## Part 9. Parse and Interpret a simple Pascal Program
+
+Part9 (part9.ts) Takes a huge step up to interpret a simple Pascal program
+
+- How to parse and interpret a Pascal program definition.
+- How to parse and interpret compound statements.
+- How to parse and interpret assignment statements, including variables.
+- A bit about symbol tables and how to store and lookup variables.
+
+I added testing today and restructured the codebase a bit to run jest tests.
+Found a long standing bug in the program once I added testing, just reinforces that
+I should add testing sooner in the process.
+
+[Let's Build a Simple Interpreter. Part 9](https://ruslanspivak.com/lsbasi-part9/)
