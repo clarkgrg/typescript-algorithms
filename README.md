@@ -59,3 +59,4 @@ Can we build a Typescript version of the python interpreter built by the excelle
 - [Interpreter Part 7 - Calculator using Abstract Syntax Tree](/src/interpreter)
 - [Interpreter Part 8 - Adds unary plus and minus](/src/interpreter)
 - [Interpreter Part 9 - Simple Pascal Interpreter](/src/interpreter)
+- [Interpreter Part 10 - Improved Pascal Interpreter](/src/interpreter)

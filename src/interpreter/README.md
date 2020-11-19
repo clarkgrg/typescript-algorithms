@@ -101,3 +101,14 @@ Found a long standing bug in the program once I added testing, just reinforces t
 I should add testing sooner in the process.
 
 [Let's Build a Simple Interpreter. Part 9](https://ruslanspivak.com/lsbasi-part9/)
+
+## Part 10. Improved Lexer, Parser, and Interpreter
+
+Part10 (part10.ts) Takes a another big step up to interpret a simple Pascal program
+
+- How to parse and interpret the Pascal PROGRAM header
+- How to parse Pascal variable declarations
+- Use the DIV keyword for integer division and a forward slash / for float division
+- Support for Pascal comments
+
+[Let's Build a Simple Interpreter. Part 10](https://ruslanspivak.com/lsbasi-part10/)
