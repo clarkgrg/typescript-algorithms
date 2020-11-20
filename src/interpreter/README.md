@@ -120,3 +120,9 @@ Part11 (part11.ts) Builds a Symbol Table
 Adds jest testing for thrown errors
 
 [Let's Build a Simple Interpreter. Part 11](https://ruslanspivak.com/lsbasi-part11/)
+
+## Part 12. Add PROCEDUREs
+
+Part12 (part12.ts) Add PROCEDUREs
+
+[Let's Build a Simple Interpreter. Part 12](https://ruslanspivak.com/lsbasi-part12/)
