@@ -112,3 +112,11 @@ Part10 (part10.ts) Takes a another big step up to interpret a simple Pascal prog
 - Support for Pascal comments
 
 [Let's Build a Simple Interpreter. Part 10](https://ruslanspivak.com/lsbasi-part10/)
+
+## Part 11. Build a Symbol Table
+
+Part11 (part11.ts) Builds a Symbol Table
+
+Adds jest testing for thrown errors
+
+[Let's Build a Simple Interpreter. Part 11](https://ruslanspivak.com/lsbasi-part11/)
