@@ -22,6 +22,8 @@ A data structure is a particular way of organizing and storing data in a compute
 - [Stack](/src/stack/)
 - [Queue](/src/queue/)
 - [Heap](/src/heap/)
+- [Single Linked List](/src/linkedlist/)
+- [Doubly Linked List](/src/linkedlist/)
 
 ## Algorithms
 

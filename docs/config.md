@@ -67,3 +67,76 @@ Add package.json
 ### Sites to Review
 
 https://www.youtube.com/playlist?list=PLLXdhg_r2hKA7DPDsunoDZ-Z769jWn4R8
+
+## Typescript Setup
+
+Install typescript and create tsconfig.json file. The Jest instructions above install typescript
+
+```
+npm i -D typescript
+tsc -init
+```
+
+## EsLint Setup
+
+Install a bunch of dependencies, this was intially grabbed from Wes Bos. I later changed so not sure if I can remove any of these.
+
+npm i -D all the following
+
+```
+    "@typescript-eslint/eslint-plugin": "^4.7.0",
+    "@typescript-eslint/parser": "^4.7.0",
+    "babel-eslint": "^10.1.0",
+    "eslint": "^7.13.0",
+    "eslint-config-airbnb": "^18.2.1",
+    "eslint-config-prettier": "^6.15.0",
+    "eslint-config-wesbos": "^1.0.1",
+    "eslint-plugin-html": "^6.1.1",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-jsx-a11y": "^6.4.1",
+    "eslint-plugin-prettier": "^3.1.4",
+    "eslint-plugin-react": "^7.21.5",
+    "eslint-plugin-react-hooks": "^4.2.0",
+```
+
+Create .eslintrc.js
+
+```Javascript
+module.exports = {
+  parser: "@typescript-eslint/parser", // Specifies the ESLint parser
+  parserOptions: {
+    ecmaVersion: 2020, // Allows for the parsing of modern ECMAScript features
+    sourceType: "module", // Allows for the use of imports
+  },
+  extends: [
+    "plugin:react/recommended",
+    "plugin:@typescript-eslint/recommended", // Uses the recommended rules from the @typescript-eslint/eslint-plugin
+    "prettier/@typescript-eslint", // Uses eslint-config-prettier to disable ESLint rules from @typescript-eslint/eslint-plugin that would conflict with prettier
+    "plugin:prettier/recommended", // Enables eslint-plugin-prettier and eslint-config-prettier. This will display prettier errors as ESLint errors. Make sure this is always the last configuration in the extends array.
+  ],
+  rules: {
+    // Place to specify ESLint rules. Can be used to overwrite rules specified from the extended configs
+    // e.g. "@typescript-eslint/explicit-function-return-type": "off",
+    "@typescript-eslint/no-namespace": "off",
+    "quotes": ["single"],
+  },
+};
+```
+
+## Prettier
+
+Install prettier and create .prettierrc.js file
+
+```
+npm i -D prettier
+```
+
+```Javascript
+module.exports = {
+  semi: true,
+  trailingComma: "all",
+  singleQuote: true,
+  printWidth: 120,
+  tabWidth: 2,
+};
+```
